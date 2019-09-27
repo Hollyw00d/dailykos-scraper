@@ -29,7 +29,8 @@ app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
 // Setting up routes
-var indexRoute = require('./routes')
+var indexRoute = require('./routes');
+var scrapeRoute = require('./routes/scrape');
 
 app.use('/', indexRoute);
 
