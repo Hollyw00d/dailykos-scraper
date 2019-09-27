@@ -28,6 +28,11 @@ app.set('view engine', 'handlebars');
 // Make public a static folder
 app.use(express.static("public"));
 
+// Setting up routes
+var indexRoute = require('./routes')
+
+app.use('/', indexRoute);
+
 app.listen(PORT, function () {
     console.log('Listening on http://localhost:' + PORT);
 });
