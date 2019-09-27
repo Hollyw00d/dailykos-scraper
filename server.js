@@ -5,3 +5,29 @@ var exphbs  = require('express-handlebars');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 
+// Setting up DB connection
+var config = require('./config/database');
+mongoose.connect(config.database, { useUnifiedTopology: true, useNewUrlParser: true });
+
+// Assign port
+var PORT = process.env.PORT || 3000;
+
+// Initialize Express
+var app = express();
+
+// Use morgan logger for logging requests
+app.use(logger("dev"));
+// Parse request body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//setting up handlebars middleware
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
+
+// Make public a static folder
+app.use(express.static("public"));
+
+app.listen(PORT, function () {
+    console.log('Listening on http://localhost:' + PORT);
+});
