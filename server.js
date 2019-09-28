@@ -4,6 +4,8 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+var app = express();
+var router = express.Router();
 
 // Setting up DB connection
 var config = require('./config/database');
@@ -31,8 +33,14 @@ app.use(express.static("public"));
 // Setting up routes
 var indexRoute = require('./routes');
 var scrapeRoute = require('./routes/scrape');
+var scraperController = require('./controllers/scrapeController');
 
 app.use('/', indexRoute);
+
+
+app.get('/scrape', function(req, res) {
+    scraperController(res);
+});
 
 app.listen(PORT, function () {
     console.log('Listening on http://localhost:' + PORT);
