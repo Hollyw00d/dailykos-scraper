@@ -32,7 +32,6 @@ app.use(express.static("public"));
 
 // Setting up routes
 var indexRoute = require('./routes');
-var scrapeRoute = require('./routes/scrape');
 var scraperController = require('./controllers/scrapeController');
 
 app.use('/', indexRoute);

@@ -8,32 +8,39 @@ var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+var urlToScrape = 'https://www.dailykos.com';
+
 var scraperController = function(res) {
-    axios.get("https://www.dailykos.com/").then(function(response) {
+    axios.get(urlToScrape).then(function(response) {
        
-        var result = {
-          blah: 1
-        };
         // Then, we load that into cheerio and save it to $ for a shorthand selector
-        // var $ = cheerio.load(response.data);
+        var $ = cheerio.load(response.data);
         
-        // var result = {};
+        var result = [];
 
-        // // Now, we grab every h2 within an article tag, and do the following:
-        // $("div.story").each(function(i, element) {
-        //   // Save an empty result object
+        // Now, we grab every h2 within an article tag, and do the following:
+        $("div.story-intro").each(function(i, element) {
+          // Save an empty result object
     
-        //   // Add the text and href of every link, and save them as properties of the result object
-        //   result.headline = $(this)
-        //     .find("a.designation-staff")
-        //     .text();
-        //   result.link = $(this)
-        //     .find("div.story-image img")
-        //     .attr("scr");
-        // });
+          // Add the text and href of every link, and save them as properties of the result object
+          var headline = $(element)
+            .find("a.designation-staff")
+            .text();
+          var link = $(element)
+            .find("a.designation-staff")
+            .attr("href");
+          
+          if(headline !== '') {
+            result.push({
+              headline,
+              link: urlToScrape + link
+            });
+          }
 
+        });
+
+        console.log(result);
         res.json(result);
-        //res.render('index');
     
       });
 };

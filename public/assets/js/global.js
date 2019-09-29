@@ -4,8 +4,8 @@ $(document).ready(function() {
         url: '/scrape',
         method: 'GET'
     })
-    // .then(function(data) {
-    //     console.log(data);
-    // });
-
+    .then(function(data) {
+        console.log(data);
+    });
+    
 });
