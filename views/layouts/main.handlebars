@@ -10,41 +10,45 @@
 </head>
 <body class="p-0 m-0">
 
-    <div id="header-wrapper" class="bg-white">
-        <header class="wrapper bg-white">
+    <div id="wrapper">
 
-            <div class="container p-0">
-                <div class="row no-gutters">
+        <div id="header-wrapper" class="bg-white">
+            <header class="wrapper bg-white">
 
-                    <div class="col-6">
-                        <div id="logo" class="d-flex justify-content-center w-100 align-items-center">
-                            <p class="h1 m-0 p-0 d-inline">Daily Kos Scraper</p>
+                <div class="container p-0">
+                    <div class="row no-gutters">
+
+                        <div class="col-6">
+                            <div id="logo" class="d-flex justify-content-center w-100 align-items-center">
+                                <p class="h1 m-0 p-0 d-inline">Daily Kos Scraper</p>
+                            </div>
+                        </div>  
+                        <div class="col-6">
+                            <div class="d-flex justify-content-center w-100 align-items-center">
+                                <button id="scrape" class="btn btn-warning btn-lg">Scrape Articles</button>
+                                <button id="view-saved" class="btn btn-success btn-lg">Saved Articles</button>
+                            </div>
                         </div>
-                    </div>  
-                    <div class="col-6">
-                        <div class="d-flex justify-content-center w-100 align-items-center">
-                            <button id="scrape" class="btn btn-warning btn-lg">Scrape Articles</button>
-                            <button id="view-saved" class="btn btn-success btn-lg">Saved Articles</button>
-                        </div>
+                    </div>    
+                </div>
+
+            </header>
+        </div>    
+
+        <section class="wrapper">
+            <div id="main" class="bg-white">
+
+                <div class="container p-0">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            {{{body}}}   
+                        </div>    
                     </div>
                 </div>    
             </div>
+        </section>
 
-        </header>
-    </div>    
-
-    <section class="wrapper">
-        <div id="main" class="bg-white">
-
-            <div class="container p-0">
-                <div class="row no-gutters">
-                    <div class="col-12">
-                        {{{body}}}   
-                    </div>    
-                </div>
-            </div>    
-        </div>
-    </section>
+    </div>
     
     <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
