@@ -3,3 +3,11 @@
     max-width: 940px;
     padding: 20px;
 }
+
+.underline,
+.underline:link,
+.underline:visited,
+.underline:hover,
+.underline:active {
+    text-decoration: underline;
+}
