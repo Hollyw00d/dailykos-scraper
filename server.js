@@ -36,6 +36,23 @@ var scraperController = require('./controllers/scrapeController');
 
 app.use('/', indexRoute);
 
+var favoritesController = require('./controllers/favoritesController');
+
+app.post('/api/favorites', function(req, res) {
+    favoritesController.create(req, res);
+});
+
+/* 
+get(/url) //Retireves all documents
+get(/url/:ID) //Retireves the specific document
+post(/url) //Create new document
+post(/url/:ID) //Update document
+delete(/url/:ID) //Delete document
+*/
+
+app.get('/api/favorites', function(req, res) {
+    favoritesController.fetchAll(req, res);
+});
 
 app.get('/scrape', function(req, res) {
     scraperController(res);
