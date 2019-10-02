@@ -1,0 +1,20 @@
+#wrapper {
+    margin: 0 auto;
+    max-width: 940px;
+    padding: 20px;
+}
+
+.underline,
+.underline:link,
+.underline:visited,
+.underline:hover,
+.underline:active {
+    text-decoration: underline;
+}
+
+a.disabled {
+    /* Make the disabled links grayish*/
+    opacity: 0.5;
+    /* And disable the pointer events */
+    pointer-events: none;
+  }

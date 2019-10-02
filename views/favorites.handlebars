@@ -1,0 +1,19 @@
+<h2 class="h4">Favorites</h2>
+
+<table id="favorite-articles" class="table table-striped">
+    <tbody>
+        {{#each favorites}}
+            <tr data-article-id="{{_id}}" data-article-link="{{headlineLink}}">
+                <td>
+                    <h3 class="h3"><a href="{{headlineLink}}">{{headline}}</a></h3>
+                    <span>Just type in field below and wait for one or two seconds to save.</span>
+                    <textarea class="form-control article-note">{{note.note}}</textarea>
+                    <span class="article-note-success text-success"></span>
+                    <br />
+                    <p>
+                        <a href="#" class="delete-btn text-danger">Remove from Favorites</a></td>
+                    </p>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

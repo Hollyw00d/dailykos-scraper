@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daily Kos Scraper using MongoDB</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/global.css">
+</head>
+<body class="p-0 m-0">
+
+    <div id="wrapper">
+
+        <div id="header-wrapper" class="bg-white">
+            <header class="wrapper bg-white">
+
+                <div class="container p-0">
+                    <div class="row no-gutters">
+
+                        <div class="col-6">
+                            <div id="logo">
+                                <p class="h1 m-0 p-0 d-inline">Daily Kos Scraper</p>
+                            </div>
+                        </div>  
+                        <div class="col-6">
+                            <div class="d-flex justify-content-center w-100 align-items-center">
+                                <a id="scrape" class="btn btn-warning btn-lg" href="/">Scrape Articles</a>
+                                <a id="view-saved" class="btn btn-success btn-lg" href="/favorites">Saved Articles</a>
+                                <a id="clear-saved" class="btn btn-danger btn-lg" href="/delete/all/favorites">Clear Saved Articles</a>
+                            </div>
+                        </div>
+                    </div>    
+                </div>
+
+            </header>
+        </div>    
+
+        <section class="wrapper">
+            <div id="main" class="bg-white">
+
+                <div class="container p-0">
+                    <div class="row no-gutters">
+                        <div class="col-12">
+                            {{{body}}}   
+                        </div>    
+                    </div>
+                </div>    
+            </div>
+        </section>
+
+    </div>
+    
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script src="assets/js/global.js"></script>
+</body>
+</html>
