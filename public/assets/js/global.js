@@ -70,8 +70,8 @@ $(document).ready(function() {
             clearTimeout(saveTimeout);
     
             var $textarea = $(this);
-            var $li = $textarea.closest("li");
-            var articleId = $li.data("article-id");
+            var $tr = $textarea.closest("tr");
+            var articleId = $tr.data("article-id");
     
             $textarea.removeClass("border-success");
     

@@ -11,7 +11,7 @@ const create = function(req, res) {
     console.log('note: ', note);
 
     let newNote = new notesModel({
-        note: note || "Your note..."
+        note: note || " "
     })
     
     newNote.save().then(function(note) {
