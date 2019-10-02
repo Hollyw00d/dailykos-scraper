@@ -11,3 +11,10 @@
 .underline:active {
     text-decoration: underline;
 }
+
+a.disabled {
+    /* Make the disabled links grayish*/
+    opacity: 0.5;
+    /* And disable the pointer events */
+    pointer-events: none;
+  }

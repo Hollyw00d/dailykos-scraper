@@ -42,6 +42,10 @@ app.post('/api/favorites', function(req, res) {
     favoritesController.create(req, res);
 });
 
+app.post('/api/favorites/:id', function(req, res) {
+    favoritesController.update(req, res);
+});
+
 /* 
 get(/url) //Retireves all documents
 get(/url/:ID) //Retireves the specific document
@@ -52,6 +56,10 @@ delete(/url/:ID) //Delete document
 
 app.get('/api/favorites', function(req, res) {
     favoritesController.fetchAll(req, res);
+});
+
+app.delete('/api/favorites/:id', function(req, res) {
+    favoritesController.remove(req, res);
 });
 
 app.get('/scrape', function(req, res) {

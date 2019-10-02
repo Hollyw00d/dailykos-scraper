@@ -1,6 +1,10 @@
 <p>Favorites</p>
-<ul>
+<ul id="favorite-articles">
 {{#each favorites}}
-    <li>{{headline}}</li>
+    <li data-article-id="{{_id}}" data-article-link="{{headlineLink}}">
+        {{headline}}<br>
+        <textarea class="form-control article-note">{{note.note}}</textarea><br>
+        <a href="#" class="delete-btn">Remove from Favorites</a>
+    </li>
 {{/each}}
 </ul>
