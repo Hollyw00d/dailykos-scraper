@@ -100,23 +100,42 @@ $(document).ready(function() {
             
             var articleId = $tr.data("article-id")
             var articleLink = $tr.data("article-link")
-    
-            //$removeBtn.addClass("disabled")
+
             $.ajax({
                 url: '/api/favorites/' + articleId,
                 type: 'DELETE'
             }).then(function () {
-                //$removeBtn.removeAttr("disabled");
                 localStorage.removeItem("saved." + articleLink);
                 $tr.fadeOut();
             }).catch(function (err) {
-                //$removeBtn.removeAttr("disabled");
                 console.error(err);
                 alert("Failed to remove the article. Check the console");
             });
     
         });
     }
-
     removeArticleFromFavs();
+
+    // Clear all saved articles
+    function clearAllSavedArticles() {
+        $('#clear-saved').on('click', function(e) {
+            e.preventDefault();
+            var $saveArticleLink = $('a.save-article');
+
+            $.ajax({
+                url: '/delete/all/favorites',
+                type: 'DELETE'
+            }).then(function() {
+                window.localStorage.clear();
+                $saveArticleLink
+                    .removeClass('disabled')
+                    .text('Save Article');
+            }).catch(function (err) {
+                console.error(err);
+                alert("Failed to delete all articles");
+            });   
+
+        });
+    }
+    clearAllSavedArticles();
 });
