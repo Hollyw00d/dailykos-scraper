@@ -14,7 +14,7 @@ const create = function(req, res) {
         note: note || "Your note..."
     })
     
-    newNote.save().then(note => {
+    newNote.save().then(function(note) {
             let newFavorite = new favoritesModel({
                 headline,
                 headlineLink,
@@ -64,7 +64,7 @@ const update = function (req, res) {
 
     favoritesModel.findOne({
         _id: _id
-    }).then(article => {
+    }).then(function(article) {
         if (!article) {
             return res.status(404).json({
                 message: "Article not found."
