@@ -40,71 +40,82 @@ $(document).ready(function() {
     }
 
     // Add article to favorites
-    $("table#article-table").on("click", "a.save-article", function (e) {
-        e.preventDefault();
-        var $saveBtn = $(this);
-        var $tr = $saveBtn.closest("tr");
-        var articleData = $tr.data("article");
-        localStorage.setItem("saved." + articleData.link, "true")/
-        $saveBtn.addClass("disabled");
-        $.post("/api/favorites", {
-            headlineLink: articleData.link,
-            headline: articleData.headline
-        }).then(function () {
-            $saveBtn.removeClass("disabled");
-            $saveBtn.removeClass("save-article").text("Article saved!");
-        }).catch(function (err) {
-            $saveBtn.removeClass("disabled");
-            console.error(err);
-            alert("Failed to save the article. Check the console");
-        })
-    })
-    
-    var saveTimeout = null
-    $("#favorite-articles").on("input change", ".article-note", function () {
-        clearTimeout(saveTimeout);
-
-        var $textarea = $(this);
-        var $li = $textarea.closest("li");
-        var articleId = $li.data("article-id");
-
-        $textarea.removeClass("border-success");
-
-        saveTimeout = setTimeout(function () {
-            $.post("/api/favorites/" + articleId, {
-                note: $textarea.val()
+    function addArticlesToFavs() {
+        $("table#article-table").on("click", "a.save-article", function (e) {
+            e.preventDefault();
+            var $saveBtn = $(this);
+            var $tr = $saveBtn.closest("tr");
+            var articleData = $tr.data("article");
+            localStorage.setItem("saved." + articleData.link, "true")/
+            $saveBtn.addClass("disabled");
+            $.post("/api/favorites", {
+                headlineLink: articleData.link,
+                headline: articleData.headline
             }).then(function () {
-                $textarea.addClass("border border-success")
+                $saveBtn.addClass("disabled").text("Article saved!");
             }).catch(function (err) {
-                console.error(err)
-                alert("Failed to save the note. Check the console");
+                $saveBtn.removeClass("disabled");
+                console.error(err);
+                alert("Failed to save the article. Check the console");
             })
-        }, 500);
-    });
-
-    // Remove from favorites
-    $("#favorite-articles").on("click", "a.delete-btn", function (e) {
-        e.preventDefault()
-
-        var $removeBtn = $(this)
-        var $li = $removeBtn.closest("li")
-        
-        var articleId = $li.data("article-id")
-        var articleLink = $li.data("article-link")
-
-        $removeBtn.addClass("disabled")
-        $.ajax({
-            url: '/api/favorites/' + articleId,
-            type: 'DELETE'
-        }).then(function () {
-            $removeBtn.removeAttr("disabled");
-            localStorage.removeItem("saved." + articleLink);
-            $li.fadeOut();
-        }).catch(function (err) {
-            $removeBtn.removeAttr("disabled");
-            console.error(err);
-            alert("Failed to remove the article. Check the console");
         });
+    }
+    addArticlesToFavs();
+    
+ 
+    // Save note to article
+    function saveNoteToArticle() {
+        var saveTimeout = null
+        $("#favorite-articles").on("input change", ".article-note", function () {
+            clearTimeout(saveTimeout);
+    
+            var $textarea = $(this);
+            var $li = $textarea.closest("li");
+            var articleId = $li.data("article-id");
+    
+            $textarea.removeClass("border-success");
+    
+            saveTimeout = setTimeout(function () {
+                $.post("/api/favorites/" + articleId, {
+                    note: $textarea.val()
+                }).then(function () {
+                    $textarea.addClass("border border-success")
+                }).catch(function (err) {
+                    console.error(err)
+                    alert("Failed to save the note. Check the console");
+                })
+            }, 500);
+        });
+    }
+    saveNoteToArticle();
 
-    });
+    // Remove from article from favorites
+    function removeArticleFromFavs() {
+        $("#favorite-articles").on("click", "a.delete-btn", function (e) {
+            e.preventDefault()
+    
+            var $removeBtn = $(this)
+            var $li = $removeBtn.closest("li")
+            
+            var articleId = $li.data("article-id")
+            var articleLink = $li.data("article-link")
+    
+            $removeBtn.addClass("disabled")
+            $.ajax({
+                url: '/api/favorites/' + articleId,
+                type: 'DELETE'
+            }).then(function () {
+                $removeBtn.removeAttr("disabled");
+                localStorage.removeItem("saved." + articleLink);
+                $li.fadeOut();
+            }).catch(function (err) {
+                $removeBtn.removeAttr("disabled");
+                console.error(err);
+                alert("Failed to remove the article. Check the console");
+            });
+    
+        });
+    }
+
+    removeArticleFromFavs();
 });
