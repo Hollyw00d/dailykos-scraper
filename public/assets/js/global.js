@@ -70,6 +70,7 @@ $(document).ready(function() {
             clearTimeout(saveTimeout);
     
             var $textarea = $(this);
+            var $textareaSuccessMsg = $textarea.next('.article-note-success');
             var $tr = $textarea.closest("tr");
             var articleId = $tr.data("article-id");
     
@@ -79,7 +80,10 @@ $(document).ready(function() {
                 $.post("/api/favorites/" + articleId, {
                     note: $textarea.val()
                 }).then(function () {
-                    $textarea.addClass("border border-success")
+                    $textarea.addClass("border border-success");
+                    $textareaSuccessMsg
+                        .text('Article note saved!')
+                        .fadeOut(2000);
                 }).catch(function (err) {
                     console.error(err)
                     alert("Failed to save the note. Check the console");
@@ -121,6 +125,7 @@ $(document).ready(function() {
         $('#clear-saved').on('click', function(e) {
             e.preventDefault();
             var $saveArticleLink = $('a.save-article');
+            var $favoriteArticlesTable = $('#favorite-articles');
 
             $.ajax({
                 url: '/delete/all/favorites',
@@ -130,6 +135,8 @@ $(document).ready(function() {
                 $saveArticleLink
                     .removeClass('disabled')
                     .text('Save Article');
+                $favoriteArticlesTable.find('tbody').empty();
+                
             }).catch(function (err) {
                 console.error(err);
                 alert("Failed to delete all articles");

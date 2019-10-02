@@ -57,6 +57,20 @@ const remove = function(req, res) {
     console.log('favoritesController.remove END');
 };
 
+const removeAll = function(req, res) {
+    favoritesModel.remove({})
+        .then(function(document) {
+            res.status(200).json({
+                success: true,
+                message: "All article removed from favorites."
+            });
+        })
+        .catch(function(err) {
+            console.log('error: ', err);
+            res.status(500).json(err);
+        });
+};
+
 const update = function (req, res) {
 
     const _id = req.params.id
@@ -114,5 +128,6 @@ module.exports = {
     fetchAll,
     update,
     remove,
+    removeAll,
     fetchAllWithReturn
 };

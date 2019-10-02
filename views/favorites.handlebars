@@ -6,7 +6,10 @@
             <tr data-article-id="{{_id}}" data-article-link="{{headlineLink}}">
                 <td>
                     <h3 class="h3"><a href="{{headlineLink}}">{{headline}}</a></h3>
-                    <textarea class="form-control article-note">{{note.note}}</textarea><br>
+                    <span>Just type in field below and wait for one or two seconds to save.</span>
+                    <textarea class="form-control article-note">{{note.note}}</textarea>
+                    <span class="article-note-success text-success"></span>
+                    <br />
                     <p>
                         <a href="#" class="delete-btn text-danger">Remove from Favorites</a></td>
                     </p>
