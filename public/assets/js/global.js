@@ -94,22 +94,23 @@ $(document).ready(function() {
         $("#favorite-articles").on("click", "a.delete-btn", function (e) {
             e.preventDefault()
     
-            var $removeBtn = $(this)
-            var $li = $removeBtn.closest("li")
+            var $removeBtn = $(this);
+
+            var $tr = $removeBtn.closest("tr")
             
-            var articleId = $li.data("article-id")
-            var articleLink = $li.data("article-link")
+            var articleId = $tr.data("article-id")
+            var articleLink = $tr.data("article-link")
     
-            $removeBtn.addClass("disabled")
+            //$removeBtn.addClass("disabled")
             $.ajax({
                 url: '/api/favorites/' + articleId,
                 type: 'DELETE'
             }).then(function () {
-                $removeBtn.removeAttr("disabled");
+                //$removeBtn.removeAttr("disabled");
                 localStorage.removeItem("saved." + articleLink);
-                $li.fadeOut();
+                $tr.fadeOut();
             }).catch(function (err) {
-                $removeBtn.removeAttr("disabled");
+                //$removeBtn.removeAttr("disabled");
                 console.error(err);
                 alert("Failed to remove the article. Check the console");
             });
